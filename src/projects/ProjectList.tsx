@@ -26,8 +26,9 @@ export default function ProjectList({ projects, onSave }: ProjectListProps) {
         <div key={project.id} className="cols-sm">
          {project === projectBeingEdited ? (
            <ProjectForm 
-            onCancel={cancelEditing}
-            onSave={onSave} />
+              onCancel={cancelEditing}
+              onSave={onSave} 
+              project={project} />
          ) : (
            <ProjectCard project={project} onEdit={handleEdit} />
          )}
