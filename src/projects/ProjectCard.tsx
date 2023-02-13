@@ -2,6 +2,7 @@ import { Project } from "./Project"
 
 interface ProjectCardProps {
     project: Project;
+    onEdit: (project: Project) => void;
 };
 
 function formatDescription (description: string): string {
@@ -9,10 +10,11 @@ function formatDescription (description: string): string {
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
-  const { project } = props;
+  const { project, onEdit } = props;
 
   const handleEditClick = (projectBeingEdited: Project) => {
-    console.log(projectBeingEdited);
+    onEdit(projectBeingEdited);
+    //console.log(projectBeingEdited);
   }
 
   return (

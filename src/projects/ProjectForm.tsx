@@ -1,8 +1,23 @@
-import React from 'react'
+import { SyntheticEvent } from "react";
+import { Project } from "./Project";
 
-export default function ProjectForm() {
+interface ProjectFormProps {
+    onSave: (project: Project) => void;
+    onCancel: () => void;
+}
+
+export default function ProjectForm({ onSave, onCancel }: ProjectFormProps) {
+  
+  //SyntheticEvent object representing the DOM submit event
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    onSave(new Project({name: "updated project"}));
+  }
+  
   return (
-    <form className="input-group vertical">
+    <form 
+        onSubmit={handleSubmit}
+        className="input-group vertical">
       <label htmlFor="name">Project Name</label>
       <input type="text" name="name" placeholder="enter name" />
      
@@ -18,7 +33,8 @@ export default function ProjectForm() {
       <div className="input-group">
         <button className="primary bordered medium">Save</button>
         <span />
-        <button type="button" className="bordered medium">cancel</button>
+        <button type="button" className="bordered medium"
+            onClick={onCancel}>cancel</button>
       </div>
     </form>
   )
